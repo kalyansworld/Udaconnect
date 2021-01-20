@@ -9,7 +9,7 @@ kubectl apply -f postgres/db-secret.yaml
 kubectl apply -f postgres/postgres.yaml
 ```
 
-## Steps for Playing around with grpc
+## Steps for Playing around with grpc 
 ```s
 python grpc/main.py
 #grpc client
