@@ -115,7 +115,7 @@ def create_location(resp):
     print(new_location)
 
 consumer = KafkaConsumer('sample',
-     bootstrap_servers=['localhost:9092'],
+     bootstrap_servers=['kafka:9092'],
      value_deserializer=lambda m: json.dumps(m.decode('utf-8')))
 
 for message in consumer:
