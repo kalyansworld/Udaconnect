@@ -16,12 +16,12 @@ python grpc/main.py
 python grpc/writer.py
 
 
-##Steps for running Kafka
+## Steps for running Kafka
 
 docker pull spotify/kafka
 docker run --ti -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=kafka --env ADVERTISED_PORT=9092 spotify/kafka
 
-##Steps for running Kafka Listener
+## Steps for running Kafka Listener
 
 docker build -t kafka-listener kafka/
 docker run --ti --name kafka-listener
