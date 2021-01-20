@@ -121,6 +121,6 @@ consumer = KafkaConsumer('sample',
 for message in consumer:
     resp=eval(json.loads((message.value)))
     if "first_name" in resp:
-        print("Person")
+        create_location(resp)
     else:
          create_location(resp)
