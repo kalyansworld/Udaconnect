@@ -1,4 +1,4 @@
 Inorder to make grpc request
 
-There is a python client available (writer.py)
-python writer.py  (This will make grpc call.)
+There is a python client available (client.py)
+python client.py  (This will make grpc call, just for testing purpose)

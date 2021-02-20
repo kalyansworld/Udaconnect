@@ -9,11 +9,10 @@ kubectl apply -f postgres/db-secret.yaml
 kubectl apply -f postgres/postgres.yaml
 ```
 
-## Steps for Playing around with grpc 
+## Steps for turning on grpc server 
 ```s
-python grpc/main.py
-#grpc client
-python grpc/writer.py
+python grpc/server.py
+
 ```
 
 ## Steps for running Kafka
@@ -24,5 +23,5 @@ docker run --ti -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=kafka --env ADVE
 ## Steps for running Kafka Listener
 ```s
 docker build -t kafka-listener kafka/
-docker run --ti --name kafka-listener
+docker run -d --name kafka-listener
 ```

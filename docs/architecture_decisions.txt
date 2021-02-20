@@ -1,4 +1,4 @@
 #Overall segregated 3 domains(Person, Location & Connection) into separate individual microservices.
 #Front end needs to call all 3 microservices individually.
-#Question arises in my mind like we don't happy need for duplex communication & streaming, so do we really need grpc. Proto is not human readable & JSON is friendly. I haven't used grpc in Udaconnect but implemented a sample to prove that i posses good understanding on same.
-#Really don't see real need for Kafka on Udaconnect architecture, still to prove that i am having good understanding on Kafka did a small POC & enclosed hear by. 
+#POST API's are meant to insert data into DB, so carrying out the operation through Kafka
+#Kafka Consumer receives the DB insertion call & invokes GRPC through which data got persisted into DB.
