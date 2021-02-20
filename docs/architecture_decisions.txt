@@ -1,4 +1,45 @@
 #Overall segregated 3 domains(Person, Location & Connection) into separate individual microservices.
 #Front end needs to call all 3 microservices individually.
-#POST API's are meant to insert data into DB, so carrying out the operation through Kafka
-#Kafka Consumer receives the DB insertion call & invokes GRPC through which data got persisted into DB.
+#Using KAfka for messaging between services
+#Using GRPC service to persist data into DB
+
+
+Micro Services
+==============
+1. Connection
+2. Person
+3. Location
+
+
+HTTP GET Calls
+==============
+These are more synchronous calls, as end user waiting for data, making immediate calls to DB & getting out data.
+Microservices will make immediate DB calls & fetch data out
+
+
+HTTP POST Calls
+===============
+Objective is persist data into DB.
+Data Persistence can happen in background without holding off users.
+Making use of Kafka & GRPC to persist data into DB.
+
+
+Role of Kafka
+=============
+Messaging systems helps for data interaction between multiple system Asynchronously
+Inspite of Acheiving Asynchronous mechanism using KAfka here.
+Additionally kafka is distributed messaging queue & possess fault tolerance mechanism.
+Kafka is best suited for communication between microservices in Asynchronous fashion.
+Kafka Producer : Present inside the microservices which pushes data to broker
+Kafka Broker : Running as seperate docker instance
+Kafka Consumer : Running as separate docker instance
+
+
+Role of GPRC
+============
+GRPC helps for connecting services across the multiple platform.
+Uses protobuff which is so light weight.
+Kafka Consumer pushes reads data from broker & make a push to GRPC.
+GRPC takes care of persisting data into DB.
+GRPRC Server : Server.py contains code for persisting data into Postgres DB.
+GRPC Client : client.py that is for my unit testing to invoke GRPC server
