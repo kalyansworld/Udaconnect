@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import order_pb2 as order__pb2
+import execute_pb2 as execute__pb2
 
 
-class OrderServiceStub(object):
+class InvokeStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,58 +14,58 @@ class OrderServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Create = channel.unary_unary(
-                '/OrderService/Create',
-                request_serializer=order__pb2.OrderMessage.SerializeToString,
-                response_deserializer=order__pb2.OrderMessage.FromString,
+        self.create_person = channel.unary_unary(
+                '/Invoke/create_person',
+                request_serializer=execute__pb2.Person.SerializeToString,
+                response_deserializer=execute__pb2.Status.FromString,
                 )
-        self.Get = channel.unary_unary(
-                '/OrderService/Get',
-                request_serializer=order__pb2.Empty.SerializeToString,
-                response_deserializer=order__pb2.OrderMessageList.FromString,
+        self.create_location = channel.unary_unary(
+                '/Invoke/create_location',
+                request_serializer=execute__pb2.Location.SerializeToString,
+                response_deserializer=execute__pb2.Status.FromString,
                 )
 
 
-class OrderServiceServicer(object):
+class InvokeServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def Create(self, request, context):
+    def create_person(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Get(self, request, context):
+    def create_location(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_OrderServiceServicer_to_server(servicer, server):
+def add_InvokeServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Create': grpc.unary_unary_rpc_method_handler(
-                    servicer.Create,
-                    request_deserializer=order__pb2.OrderMessage.FromString,
-                    response_serializer=order__pb2.OrderMessage.SerializeToString,
+            'create_person': grpc.unary_unary_rpc_method_handler(
+                    servicer.create_person,
+                    request_deserializer=execute__pb2.Person.FromString,
+                    response_serializer=execute__pb2.Status.SerializeToString,
             ),
-            'Get': grpc.unary_unary_rpc_method_handler(
-                    servicer.Get,
-                    request_deserializer=order__pb2.Empty.FromString,
-                    response_serializer=order__pb2.OrderMessageList.SerializeToString,
+            'create_location': grpc.unary_unary_rpc_method_handler(
+                    servicer.create_location,
+                    request_deserializer=execute__pb2.Location.FromString,
+                    response_serializer=execute__pb2.Status.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'OrderService', rpc_method_handlers)
+            'Invoke', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class OrderService(object):
+class Invoke(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def Create(request,
+    def create_person(request,
             target,
             options=(),
             channel_credentials=None,
@@ -75,14 +75,14 @@ class OrderService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/OrderService/Create',
-            order__pb2.OrderMessage.SerializeToString,
-            order__pb2.OrderMessage.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Invoke/create_person',
+            execute__pb2.Person.SerializeToString,
+            execute__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def Get(request,
+    def create_location(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,8 +92,8 @@ class OrderService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/OrderService/Get',
-            order__pb2.Empty.SerializeToString,
-            order__pb2.OrderMessageList.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Invoke/create_location',
+            execute__pb2.Location.SerializeToString,
+            execute__pb2.Status.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

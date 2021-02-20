@@ -11,6 +11,8 @@ kubectl apply -f postgres/postgres.yaml
 
 ## Steps for turning on grpc server 
 ```s
+python -m pip install grpcio
+python -m pip install grpcio-tools
 python grpc/server.py
 
 ```
