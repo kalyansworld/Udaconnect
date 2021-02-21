@@ -21,7 +21,7 @@ class PersonService:
         new_person.last_name = person["last_name"]
         new_person.company_name = person["company_name"]
 
-        producer = KafkaProducer(bootstrap_servers='kafka:9092')
+        producer = KafkaProducer(bootstrap_servers='kafka:30092')
         producer.send('sample', bytes(str(person), 'utf-8'))
         producer.flush()
 
